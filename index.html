@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRIEFING DE GRABACIÓN · CULTURA COMICS GUATIRE</title>
+<style>
+  :root{
+    --bg:#f6f4ef; --card:#fff; --ink:#1d1b19; --muted:#6f6a63; --line:#e5e0d6;
+    --accent:#c2410c; --accent-soft:#fdeee4;
+    --p1:#b91c1c; --p2:#1d4ed8; --p3:#475569;
+    --tino:#facc15; --warn-bg:#fff7d6; --warn-line:#f1d96b;
+    --c-desc:#0e7490; --c-cons:#b45309; --c-conv:#15803d; --c-gift:#be185d;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  header{max-width:980px;margin:0 auto;padding:32px 20px 8px}
+  h1{margin:0 0 6px;font-size:26px;letter-spacing:.02em;line-height:1.2}
+  header p{margin:0;color:var(--muted)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 80px}
+  button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:#fff;padding:9px 14px}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:18px}
+  .panel h2{margin:0 0 10px;font-size:16px}
+  .rules{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:r}
+  .rules li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;counter-increment:r;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fdfcf9}
+  .rules li::before{content:counter(r);width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+  .rules b{display:block;font-size:15.5px}
+  .rules span{font-size:14.5px;color:#3d3a36}
+  .rules .sub{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:14px 0 8px}
+
+  .progress{height:10px;background:#ece7dc;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+  .progress>i{display:block;height:100%;width:0;background:var(--c-conv);transition:width .25s}
+  .small{font-size:13px;color:var(--muted)}
+  .order{margin:0;padding-left:0;list-style:none;display:grid;gap:6px}
+  .order a{display:flex;gap:10px;align-items:center;color:inherit;text-decoration:none;padding:7px 10px;border-radius:10px;border:1px solid transparent}
+  .order a:hover{background:#faf8f3;border-color:var(--line)}
+  .order .pos{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+  .order .nm{flex:1}
+  .order .ct{font-size:12px;color:var(--muted)}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .filter{display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:600;font-size:14px}
+
+  .group{margin:34px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+  .group h2{margin:0;font-size:21px;letter-spacing:-.01em}
+  .group p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+
+  .pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;color:#fff;background:var(--ink)}
+  .pill.p1{background:var(--p1)} .pill.p2{background:var(--p2)} .pill.p3{background:var(--p3)}
+  .pill.tino{background:var(--tino);color:#1d1b19}
+  .pill.st-d{background:var(--c-desc)} .pill.st-c{background:var(--c-cons)} .pill.st-v{background:var(--c-conv)}
+  .pill.gift{background:var(--c-gift)} .pill.gen{background:#e9e5dc;color:var(--ink)}
+  .pill.num{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px;scroll-margin-top:16px}
+  .card.p1{border-left:6px solid var(--p1)} .card.p2{border-left:6px solid var(--p2)} .card.p3{border-left:6px solid var(--p3)}
+  .pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .card h3{margin:0 0 14px;font-size:22px;letter-spacing:-.01em;line-height:1.25;display:flex;gap:12px;align-items:flex-start}
+  .card .pos{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-size:16px;font-weight:700;display:grid;place-items:center}
+  .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:18px 0 6px}
+  .goal{margin:0;font-size:15px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{background:#f1ede4;border-radius:999px;padding:4px 12px;font-size:14px}
+  .scenes{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+  .scenes li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;counter-increment:s}
+  .scenes li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+  .scenes b{display:block;font-size:15px}
+  .scenes span{font-size:14.5px}
+  .tinoline{display:flex;gap:10px;align-items:flex-start;background:#fffbe0;border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;margin-top:14px;font-size:14.5px}
+  .quote{background:#f6f3ec;border-radius:12px;padding:12px 14px;font-size:14.5px;margin-top:8px}
+  .quote b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:3px}
+  .confirm{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:12px 16px;margin-top:16px;font-size:14.5px}
+  .confirm b{display:block;margin-bottom:4px}
+  .confirm ul{margin:0;padding-left:18px}
+
+  .videos{display:grid;gap:10px}
+  .vid{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:#fdfcf9}
+  .vid.done{background:#eef8f0;border-color:#bfe2c8}
+  .vid input{width:20px;height:20px;margin-top:2px;accent-color:var(--c-conv)}
+  .vid .vt{font-weight:700;font-size:15px}
+  .vid .vt small{font-weight:500;color:var(--muted)}
+  .vid .chips{margin-top:6px}
+  .single{display:flex;gap:10px;align-items:center;margin-top:16px;font-weight:600;font-size:14.5px}
+  .single input{width:20px;height:20px;accent-color:var(--c-conv)}
+
+  .actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+  .reuse{display:grid;gap:10px;margin-top:14px}
+  .reuse .item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+  .reuse .item .n{flex:none}
+  .reuse .item p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+  .hidden{display:none!important}
+
+  .overlay{position:fixed;inset:0;background:rgba(20,18,16,.75);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+  .overlay.open{display:flex}
+  .modal{background:#fff;border-radius:18px;max-width:460px;width:100%;max-height:94vh;overflow:auto}
+  .modal .top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px}
+  .modal .top b{font-size:15px}
+  .modal iframe{border:0;width:100%;height:min(78vh,720px);display:block;background:#fff}
+  .modal .foot{padding:10px 16px 14px;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BRIEFING DE GRABACIÓN · CULTURA COMICS GUATIRE</h1>
+  <p>Qué grabar, con qué productos y cómo grabarlo. Cada contenido trae su video de referencia para verlo sin salir de la página.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="panel">
+    <h2>Reglas de grabación</h2>
+    <p class="small" style="margin:0 0 12px">Aplican a todas las grabaciones.</p>
+    <ol class="rules">
+      <li><div><b>Prioriza una buena iluminación</b><span>Antes de grabar, revisa que el producto se vea con luz clara y pareja, sin sombras fuertes ni reflejos que tapen el estampado.</span></div></li>
+      <li><div><b>Encuadre correcto</b><span>Deja el producto completo y bien centrado, con espacio a su alrededor para que no salga cortado en ningún momento. Mantén la cámara derecha, sin inclinación.</span></div></li>
+      <li><div><b>Movimiento leve y sin temblor</b><span>Mueve la cámara y el producto de forma lenta y suave. Sostén el celular con las dos manos o apóyalo en un punto fijo para evitar vibraciones.</span></div></li>
+    </ol>
+    <div class="sub">En las escenas de producto</div>
+    <ol class="rules" style="counter-reset:r 3">
+      <li><div><b>Luz de color en el fondo</b><span>Si es posible, ilumina el fondo con un color que combine con la camisa (por ejemplo, rojo).</span></div></li>
+    </ol>
+    <div class="sub">Antes de seguir grabando</div>
+    <ol class="rules" style="counter-reset:r 4">
+      <li><div><b>Envía un video de prueba en cada escenario nuevo</b><span>Al iniciar en un escenario distinto, graba una prueba corta y envíala a quien coordina el contenido para confirmar que va comenzando bien.</span></div></li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h2>Avance de grabación</h2>
+    <div class="progress"><i id="bar"></i></div>
+    <div class="small" id="progressTxt"></div>
+    <div class="filter"><input type="checkbox" id="onlyTino" style="width:18px;height:18px"><label for="onlyTino">Ver solo los contenidos donde aparece <span class="pill tino">🎬 El Tino</span></label></div>
+  </div>
+
+  <div class="panel">
+    <h2>Orden de grabación</h2>
+    <ol class="order" id="order"></ol>
+  </div>
+
+  <div class="panel">
+    <h2>Cómo leer cada ficha</h2>
+    <div class="legend">
+      <span class="pill p1">Prioridad 1</span><span class="pill p2">Prioridad 2</span><span class="pill p3">Prioridad 3</span>
+      <span class="pill tino">🎬 Aparece El Tino</span>
+      <span class="pos" style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center">1</span><span class="small">= número en el orden de grabación (del 1 al 10)</span>
+    </div>
+    <p class="small" style="margin:10px 0 0">Marca cada video como grabado con su casilla ✓.</p>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<div class="overlay" id="viewer" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="top"><b id="vTitle"></b><button id="closeViewer">Cerrar ✕</button></div>
+    <div id="player"></div>
+    <div class="foot"><a id="vLink" target="_blank" rel="noopener">Abrir en Instagram ↗</a></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DATOS DEL BRIEFING
+   prio: 1 = varios videos con el mismo estilo · 2 = contenidos #1 y #12 · 3 = resto
+   ========================================================= */
+const BRIEFS = [
+
+/* ---------------- PRIORIDAD 1 ---------------- */
+{ id:"ref-10", n:10, prio:1, tino:false,
+  name:"Ahora puedes escuchar y vestir rock",
+  url:"https://www.instagram.com/reels/DfqadoCN9j8/",
+  goal:"Mostrar el producto que las personas podrían desear y podrían identificar sus gustos, pensando en una banda, anime o personaje que le guste a muchas personas o que la gente pida mucho.",
+  styleNote:"Mismo estilo de grabación para los 5 videos",
+  scenes:[
+    {t:"Escena única, plano fijo en el perchero", d:"Cámara fija frente al perchero. Quita las camisas una por una y muestra cada una por delante y por detrás."}
+  ],
+  videos:[
+    {id:"v1", products:["Soda Stereo","AC/DC","Metallica","Korn","Pink Floyd","Radiohead","Black Sabbath"]},
+    {id:"v2", products:["The Beatles","Guns N' Roses","Queen","Megadeth","Nirvana"]},
+    {id:"v3", products:["Anime infantil · 2 modelos talla 8","Anime infantil · 1 modelo talla 6","Anime infantil · 1 modelo talla 7"]},
+    {id:"v4", products:["2 modelos de niño","1 modelo de niña","(superhéroes o personajes)"]},
+    {id:"v5", products:["3 modelos de niña que hayan generado ventas"]}
+  ]
+},
+
+{ id:"ref-1", n:14, prio:1, tino:false,
+  name:"Puedes vestirte así en Guatire",
+  url:"https://www.instagram.com/reels/DPVQZDfDI6e/",
+  goal:"Mostrar a detalle la calidad de las camisas, el diseño cool, el material y el estampado.",
+  styleNote:"Cada producto protagoniza su propio video. Mismo estilo de grabación para todos",
+  scenes:[
+    {t:"Entrega", d:"Saca la camisa de la bolsa en la que se entrega cuando se vende."},
+    {t:"Perchero", d:"Cuelga la camisa en un gancho en el perchero; sácala y muéstrala por ambos lados (frente y espalda)."},
+    {t:"Detalle", d:"Muestra en detalle los relieves y el diseño."}
+  ],
+  videos:[
+    {id:"v1", products:["Camisa de Goku"]},
+    {id:"v2", products:["Camisa de Spider-Man"]},
+    {id:"v3", products:["Camisa de Goku"]},
+    {id:"v4", products:["Camisa de Monkey D. Luffy"]},
+    {id:"v5", products:["Camisa de Naruto"]}
+  ],
+  quotes:[
+    {l:"Frase del video", t:"“Vi esto y me acordé de ti”"}
+  ]
+},
+
+{ id:"ref-17", n:18, prio:1, tino:false,
+  name:"A veces solo necesitas una camisa chévere para mejorar el día",
+  url:"https://www.instagram.com/reels/DM2_VcRuN_9/",
+  goal:"Generar deseo por algún estampado muy fino de la tienda. Mostrarlo a detalle, mostrar el relieve. Invitar a venir a la tienda.",
+  styleNote:"Un video por camisa, mismo estilo de grabación para los 3",
+  scenes:[
+    {t:"Camisa colgada", d:"Con la camisa colgada, pasar la mano por encima del diseño."},
+    {t:"Transición por un lado", d:"Agarrar la camisa por abajo y soltarla."},
+    {t:"Transición por el otro lado", d:"Hacer lo mismo por el otro lado para crear la transición."},
+    {t:"Detalle del diseño", d:"Mostrar el diseño a detalle."}
+  ],
+  videos:[
+    {id:"v1", products:["Camisa de Gorillaz"]},
+    {id:"v2", products:["Camisa de Héctor Lavoe"]},
+    {id:"v3", products:["Camisa de Harry Potter"]}
+  ],
+  quotes:[{l:"Canción del video de Gorillaz", t:"“Im Happy…”"}]
+},
+
+/* ---------------- PRIORIDAD 2 ---------------- */
+{ id:"ref-6", n:1, prio:2, tino:true,
+  tinoRole:"El Tino es el modelo: viste las camisas y hace las transiciones.",
+  name:"Pov: estás buscando la camisa de tu personaje",
+  url:"https://www.instagram.com/reels/DN-uRQjDqIb/",
+  goal:"Identificar una necesidad específica, humanizar la marca, mostrar diferentes modelos de la misma categoría. Conectar con el deseo de regalo de Navidad.",
+  products:["1 · Naruto (la lleva puesta al inicio)","2 · Goku","3 · Attack on Titan (Ataque a los Titanes)","4 · Kimetsu no Yaiba","5 · Solo Leveling","6 · Naruto (la última, con la que finaliza)"],
+  scenes:[
+    {t:"Inicio", d:"El Tino empieza con la camisa de Naruto puesta y las demás colgadas en ganchos, sostenidas en la mano, como la modelo de la referencia."},
+    {t:"Recorrido", d:"Camina por el pasillo de la galería."},
+    {t:"Transición entre camisas", d:"Se coloca la siguiente camisa encima, sobrepuesta y sin vestirla; luego se la viste y sobrepone la siguiente. Repetir hasta terminar las 6 camisas; El Tino finaliza vistiendo la última."}
+  ]
+},
+
+{ id:"ref-12", n:12, prio:2, tino:false,
+  name:"Guatire tiene una tienda diferente, ¿ya la conocías?",
+  url:"https://www.instagram.com/reels/Dej2X_8I3xy/",
+  goal:"Mostrar 360° nuestra tienda y sus detalles, hablar del tipo de cosas que encuentran dentro.",
+  products:["Productos en el mostrador","Productos en los ganchos","Repisas"],
+  scenes:[
+    {t:"Fachada del Macaira", d:"Cámara en 0.5."},
+    {t:"Fachada de la galería", d:"Mostrar la fachada de la galería."},
+    {t:"Camino a la tienda", d:"Andando por el pasillo del centro comercial hasta llegar a la tienda."},
+    {t:"Vitrina", d:"Mostrar la vitrina de la tienda, que está dentro del centro comercial."},
+    {t:"Dentro: mostrador", d:"Mostrar los productos que están en el mostrador."},
+    {t:"Dentro: ganchos", d:"Mostrar los productos que están en los ganchos."},
+    {t:"Dentro: repisas", d:"Mostrar las repisas."}
+  ]
+},
+
+/* ---------------- PRIORIDAD 3 ---------------- */
+{ id:"ref-14", n:4, prio:3, tino:false,
+  name:"Regalo de amigo secreto",
+  url:"",
+  goal:"Mostrar conjuntos de gorras y collares, carteras.",
+  styleNote:"En cada escena: primero un plano general con desplazamiento y después acercar la cámara para captar los detalles",
+  products:["Collares","Gorras","Carteras"],
+  scenes:[
+    {t:"Escena 1 · Collares", d:"Los collares colocados arriba del mostrador."},
+    {t:"Escena 2 · Gorras", d:"Las gorras colocadas arriba del mostrador."},
+    {t:"Escena 3 · Carteras", d:"Las carteras colocadas arriba del mostrador."}
+  ]
+},
+
+{ id:"ref-3", n:7, prio:3, tino:true,
+  tinoRole:"El Tino ayuda a sostener la camisa.",
+  name:"Modelo destacado + trend humana",
+  url:"https://www.instagram.com/reels/DZd8hCOxsyS/",
+  goal:"Mostrar un modelo destacado que llame mucho la atención de una categoría específica de clientes, con una trend más humana.",
+  products:["Camisa de Uchiha Itachi (o de Kakashi)"],
+  setup:"Iluminación proyectada en la pared de un color que combine con la camisa (ejemplo: rojo).",
+  scenes:[
+    {t:"Despliegue de la camisa", d:"Transición de despliegue igual a la referencia. Cámara vertical y sin inclinación, dejando espacio suficiente para que la camisa no salga cortada en ningún ángulo. Voltear la camisa mostrando el frente; en esa misma escena la persona la mueve de lado a lado."},
+    {t:"Transición lateral", d:"Transición lateral mostrando la camisa."},
+    {t:"Detalles", d:"Mostrar los detalles más de cerca."},
+    {t:"En el cuerpo", d:"Mostrar la camisa puesta en el cuerpo."}
+  ]
+},
+
+{ id:"ref-11", n:11, prio:3, tino:false,
+  name:"La pesadilla de los tibios",
+  url:"https://www.instagram.com/reels/DezwQ-EP9uN/",
+  goal:"Mostrar 3 modelos de gustos específicos (como bandas de rock más viejas o pesadas) que puedan identificar a las personas que sienten que sus gustos son muy diferentes. Usar un lenguaje más trend y ver con qué público conecta.",
+  products:["Linkin Park","Slipknot","Red Hot Chili Peppers","System of a Down","Metallica"],
+  scenes:[
+    {t:"Por cada producto · Toma 1", d:"Quitar la camisa del perchero y girarla para mostrarla por detrás."},
+    {t:"Por cada producto · Toma 2", d:"Toma en detalle del diseño."}
+  ],
+  quotes:[
+    {l:"Texto en pantalla (título)", t:"“Que esta camisa no la vea un niño de 30 años”"},
+    {l:"Texto en pantalla (subtítulo)", t:"“Porque le crearás una necesidad”"}
+  ]
+},
+
+{ id:"ref-15", n:13, prio:3, tino:false,
+  name:"Tenemos un año, danos tu me gusta",
+  url:"https://www.instagram.com/reels/DfCrrzvirQ0/",
+  goal:"Conectar con la emoción de las personas, mostrar cómo se graban los contenidos y explicar que nos esforzamos para traer ropa divertida y diferente a nuestra querida Guatire. Pedir un me gusta para llegar a más personas, independientemente de sus gustos personales.",
+  products:["Sin producto: detrás de escena"],
+  scenes:[
+    {t:"Detrás de escena", d:"Mostrar a la Keily grabando. Se puede captar mientras se graban las otras piezas."}
+  ]
+},
+
+{ id:"ref-18", n:19, prio:3, tino:false,
+  name:"¡Tenemos los animes que están de moda!",
+  url:"https://www.instagram.com/reels/DWSijcWEX0Q/",
+  goal:"Hablar de que tenemos variedad de estilos y modelos: entendemos lo que está de moda y lo tenemos. Invitar a escribirnos para conocer los modelos.",
+  products:["2 camisas de Ataque a los Titanes (Attack on Titan), con diseños diferentes"],
+  scenes:[
+    {t:"Diálogo", d:"La mamá: “Es que yo no conozco a esos personajes”. Nosotros: “No se preocupe, tenemos todos los animes que están de moda”."},
+    {t:"Las camisas", d:"Mostrar la camisa agarrada con la mano, darle la vuelta y mostrarla en detalle. Hacerlo con las 2 camisas."}
+  ]
+}
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const KEY = "briefing-grabado-v1";
+let done = {};
+try{ done = JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){}
+const saveDone = ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(done)); }catch(e){} };
+
+const PRIO = {1:"Prioridad 1", 2:"Prioridad 2", 3:"Prioridad 3"};
+const GROUPS = {
+  1:{t:"Prioridad 1 · Varios videos con el mismo estilo", d:"Se graba el mismo estilo repetido con cada producto."},
+  2:{t:"Prioridad 2", d:""},
+  3:{t:"Prioridad 3 · El resto de las grabaciones", d:""}
+};
+
+function embedUrl(url){
+  const m = String(url||"").match(/instagram\.com\/(?:[^\/]+\/)?(p|reel|reels|tv)\/([A-Za-z0-9_-]+)/i);
+  if(!m) return null;
+  return `https://www.instagram.com/${m[1].toLowerCase()==="reels"?"reel":m[1].toLowerCase()}/${m[2]}/embed/`;
+}
+const units = b => b.videos ? b.videos.map(v=>({key:b.id+":"+v.id})) : [{key:b.id+":main"}];
+
+function pills(b){
+  return `<div class="pills">
+    <span class="pill p${b.prio}">${PRIO[b.prio]}</span>
+    ${b.tino?`<span class="pill tino">🎬 Aparece El Tino</span>`:""}
+  </div>`;
+}
+
+function card(b){
+  const sceneList = `<ol class="scenes">${b.scenes.map(s=>`<li><div><b>${esc(s.t)}</b><span>${esc(s.d)}</span></div></li>`).join("")}</ol>`;
+  const prods = b.products ? `<div class="lbl">Productos</div><div class="chips">${b.products.map(p=>`<span class="chip">${esc(p)}</span>`).join("")}</div>` : "";
+  const vids = b.videos ? `<div class="lbl">Videos a grabar (${b.videos.length})</div><div class="videos">${
+      b.videos.map((v,i)=>{ const k=b.id+":"+v.id;
+        return `<label class="vid ${done[k]?"done":""}"><input type="checkbox" data-k="${k}" ${done[k]?"checked":""}>
+          <div><div class="vt">Video ${i+1}</div>
+          <div class="chips">${v.products.map(p=>`<span class="chip">${esc(p)}</span>`).join("")}</div></div></label>`;}).join("")}</div>` : "";
+  const single = b.videos ? "" : `<label class="single"><input type="checkbox" data-k="${b.id}:main" ${done[b.id+":main"]?"checked":""}> Marcar como grabado</label>`;
+  const embed = embedUrl(b.url);
+  return `<article class="card p${b.prio}" id="${b.id}" data-tino="${b.tino?1:0}">
+    ${pills(b)}
+    <h3><span class="pos">${b.pos}</span><span>${esc(b.name)}</span></h3>
+    <div class="lbl" style="margin-top:0">Objetivo</div>
+    <p class="goal">${esc(b.goal)}</p>
+    ${b.tino?`<div class="tinoline"><span class="pill tino">🎬 El Tino</span><span>${esc(b.tinoRole)}</span></div>`:""}
+    ${b.setup?`<div class="quote"><b>Preparación del set</b>${esc(b.setup)}</div>`:""}
+    ${vids || prods}
+    <div class="lbl">Cómo grabarlo${b.styleNote?` · ${esc(b.styleNote)}`:""}</div>
+    ${sceneList}
+    ${(b.quotes||[]).map(q=>`<div class="quote"><b>${esc(q.l)}</b>${esc(q.t)}</div>`).join("")}
+    ${single}
+    <div class="actions">${embed?`<button class="primary" data-ref="${b.id}">▶ Ver video de referencia</button>`:`<span class="small">Sin video de referencia</span>`}</div>
+  </article>`;
+}
+
+function render(){
+  const sorted = [...BRIEFS].sort((a,b)=>a.prio-b.prio || a.n-b.n);
+  sorted.forEach((b,i)=>b.pos=i+1);
+  $("#order").innerHTML = sorted.map(b=>`<li><a href="#${b.id}"><span class="pos">${b.pos}</span><span class="nm">${esc(b.name)}</span>${b.tino?`<span class="pill tino">🎬 El Tino</span>`:""}<span class="ct">${units(b).length>1?units(b).length+" videos":"1 video"}</span></a></li>`).join("");
+
+  let html = "";
+  for(const p of [1,2,3]){
+    html += `<div class="group"><h2>${GROUPS[p].t}</h2>${GROUPS[p].d?`<p>${GROUPS[p].d}</p>`:""}</div>`;
+    html += sorted.filter(b=>b.prio===p).map(card).join("");
+  }
+  $("#content").innerHTML = html;
+  applyFilter(); progress();
+}
+
+function progress(){
+  const all = BRIEFS.flatMap(units);
+  const n = all.filter(u=>done[u.key]).length;
+  $("#bar").style.width = (all.length? n/all.length*100 : 0)+"%";
+  $("#progressTxt").textContent = `${n} de ${all.length} videos grabados`;
+}
+function applyFilter(){
+  const only = $("#onlyTino").checked;
+  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("hidden", only && c.dataset.tino!=="1"));
+  document.querySelectorAll(".group").forEach(g=>{
+    let el=g.nextElementSibling, any=false;
+    while(el && !el.classList.contains("group")){ if(el.classList.contains("card") && !el.classList.contains("hidden")) any=true; el=el.nextElementSibling; }
+    g.classList.toggle("hidden", only && !any);
+  });
+}
+
+document.addEventListener("change",e=>{
+  if(e.target.id==="onlyTino"){ applyFilter(); return; }
+  const k = e.target.dataset && e.target.dataset.k; if(!k) return;
+  done[k] = e.target.checked; if(!e.target.checked) delete done[k];
+  saveDone(); const v = e.target.closest(".vid"); if(v) v.classList.toggle("done", e.target.checked); progress();
+});
+document.addEventListener("click",e=>{
+  const t = e.target;
+  if(t.dataset.ref){
+    const b = BRIEFS.find(x=>x.id===t.dataset.ref), src = embedUrl(b.url); if(!src) return;
+    $("#player").innerHTML = `<iframe src="${src}" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" title="Referencia"></iframe>`;
+    $("#vTitle").textContent = `${b.pos} · Referencia`; $("#vLink").href = b.url; $("#viewer").classList.add("open");
+  }
+  if(t.id==="closeViewer" || t.id==="viewer"){ $("#viewer").classList.remove("open"); $("#player").innerHTML=""; }
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ $("#viewer").classList.remove("open"); $("#player").innerHTML=""; }});
+
+render();
+</script>
+</body>
+</html>
